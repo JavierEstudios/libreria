@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>Listado de libros</title>
+    </head>
+    <body>
+        <h1>Listado de libros</h1>
+        {% for libro in libros %}
+            <a href="{% url 'task-detail' pk=task.pk %}">{{ libro.name }}</a>
+        {% endfor %}
+    </body>
+</html>

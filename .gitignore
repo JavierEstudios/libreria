@@ -1,0 +1,14 @@
+# Environments
+.env
+librosvenv/
+
+# Django stuff:
+*.log
+libros/local_settings.py
+libros/db.sqlite3
+libros/db.sqlite3-journal
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
