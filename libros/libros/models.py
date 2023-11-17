@@ -8,7 +8,7 @@ class Libro (models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     sinopsys = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
-    edited_at = models.DateTimeField(default=created_at)
+    edited_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

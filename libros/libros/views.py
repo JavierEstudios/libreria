@@ -1,49 +1,62 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from libros.models import Libro
-from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 from .forms import Formulario
 
+'''
 class Listado (View):
     def get(self, request):
         libros = Libro.objects.all()
         return render(request, 'libros/listado.html', {'libros':libros})
-    
+
 class Detalle (View):
     def get(self, request, pk):
         libro = get_object_or_404(Libro, pk=pk)
         return render(request, 'libros/detalle.html', {'libro':libro})
-    
-class Añadir (View):
-    form_class = Formulario
-    initial = {'key': 'value'}
-    temp = 'libros/añadir.html'
+'''
+
+class Listado (ListView):
+    model = Libro
+    template_name = "libros/listado.html"
+
+class Detalle (DetailView):
+    model = Libro
+    template_name = "libros/detalle.html"
+
+
+
+class Annadir (View):
+    template = 'libros/annadir.html'
 
     def get(self, request):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.temp, {'form':form})
+        form = Formulario()
+        return render(request, self.template, {'form':form})
 
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = Formulario(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('')
-        return render(request, self.temp, {'form':form})
+            form.save()
+            return redirect('Listado')
+        return render(request, self.template, {'form':form})
 
 class Modificar (View):
-    form_class = Formulario
-    initial = {'key': 'value'}
-    temp = 'libros/editar.html'
+    template = 'libros/modificar.html'
 
-    def get(self, request):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.temp, {'form':form})
-    
+    def get(self, request, pk):
+        #libro = get_object_or_404(Libro, pk=pk)
+        #form = Formulario(libro.get_deferred_fields["title","author","rating","sinopsys"])
+        form = Formulario()
+        return render(request, self.template, {'form':form})
+
     def post(self, request, pk):
-        libro = get_object_or_404(Libro, pk=pk)
-        form = self.form_class(request.POST)
+        #libro = get_object_or_404(Libro, pk=pk)
+        form = Formulario(request.POST)
         if form.is_valid():
-            # edited_at = timezone.now
-            return HttpResponseRedirect('book/<int:pk>')
-        return render(request, self.temp, {'form':form})
+            #libro.edited_at = timezone.now
+            form.save()
+            return redirect('book/<int:pk>')
+        return render(request, self.template, {'form':form})

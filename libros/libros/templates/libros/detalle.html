@@ -1,13 +1,17 @@
 <html>
     <head>
-        <title>Detalles {{ libro.name }}</title>
+        <title>Detalles {{ libro.title }}</title>
     </head>
     <body>
-        <h1>{{ libro.name }}</h1>
+        <h1>{{ libro.title }}</h1>
         <p>{{ libro.author }}</p>
         <p>{{ libro.rating }}</p>
         <p>{{ libro.sinopsys }}</p>
         <p>{{ libro.created_at }}</p>
         <p>{{ libro.edited_at }}</p>
+        <p>
+            <a href="{% url 'Listado' %}">Volver</a>
+            <a href="{% url 'Modificar' pk=libro.pk %}">Editar</a>
+        </p>
     </body>
 </html>

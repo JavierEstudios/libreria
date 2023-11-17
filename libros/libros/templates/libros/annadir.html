@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Nuevo libro</title>
+    </head>
+    <body>
+        <h1>Nuevo libro</h1>
+        <form action="{% url 'Annadir' %}" method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Añadir">
+        </form>
+    </body>
+</html>

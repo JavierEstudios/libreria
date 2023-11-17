@@ -4,9 +4,13 @@
     </head>
     <body>
         <h1>Listado de libros</h1>
-        {% for libro in libros %}
-            <a href="{% url 'task-detail' pk=task.pk %}">{{ libro.name }}</a>
+        <ul>
+        {% for libro in object_list %}
+            <li><a href="{% url 'Detalle' pk=libro.pk %}">{{ libro.title }}</a></li>
+            {% empty %}
+            <li>No hay libros</li>
         {% endfor %}
-        <a href="{% url 'AñadeLibro' %}">Nuevo libro</a>
+        </ul>
+        <a href="{% url 'Annadir' %}">Nuevo libro</a>
     </body>
 </html>

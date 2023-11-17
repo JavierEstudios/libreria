@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import Listado, Detalle, Añadir, Modificar
+from .views import Listado, Detalle, Annadir, Modificar
 
 urlpatterns = [
-    path('',Listado.as_view(), name="ListadoLibros" ),
-    path('book/<int:pk>', Detalle.as_view() ,name="DetalleLibro"),
-    path('add', Añadir.as_view() ,name="AñadeLibro"),
-    path('edit/<int:pk>', Modificar.as_view() ,name="EditaLibro"),
+    path('',Listado.as_view(), name="Listado" ),
+    path('book/<int:pk>', Detalle.as_view() ,name="Detalle"),
+    path('add', Annadir.as_view() ,name="Annadir"),
+    path('edit/<int:pk>', Modificar.as_view() ,name="Modificar"),
 ]

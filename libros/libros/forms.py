@@ -1,7 +1,8 @@
 from django import forms
+from .models import Libro
 
-class Formulario(forms.Form):
-    title = forms.CharField(label='título', max_length=100)
-    author = forms.CharField(label='autor', max_length=50)
-    rating = forms.IntegerField(label='valoración')
-    sinopsys = forms.CharField(label='sinopsis')
+class Formulario(forms.ModelForm):
+
+    class Meta:
+        model = Libro
+        fields = ["title","author","rating","sinopsys"]
