@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalles {{ libro.title }}</title>
+    </head>
+    <body>
+        <h1>{{ libro.title }}</h1>
+        <p>{{ libro.author }}</p>
+        <p>{{ libro.rating }}</p>
+        <p>{{ libro.sinopsys }}</p>
+        <p>{{ libro.created_at }}</p>
+        <p>{{ libro.edited_at }}</p>
+        <p>
+            <a href="{% url 'Listado' %}">Volver</a>
+            <a href="{% url 'Modificar' pk=object.pk %}">Editar</a>
+            <a href="{% url 'Eliminar' pk=object.pk %}">Eliminar</a>
+        </p>
+    </body>
+</html>

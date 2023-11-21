@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listado de libros</title>
+    </head>
+    <body>
+        <h1>Listado de libros</h1>
+        <ul>
+        {% for libro in object_list %}
+            <li><a href="{% url 'Detalle' pk=libro.pk %}">{{ libro.title }}</a></li>
+            {% empty %}
+            <li>No hay libros</li>
+        {% endfor %}
+        </ul>
+        <a href="{% url 'Annadir' %}">Nuevo libro</a>
+    </body>
+</html>

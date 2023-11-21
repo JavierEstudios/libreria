@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar {{ object.title }}</title>
+    </head>
+    <body>
+        <h1>Editar {{ object.title }}</h1>
+        <form action="{% url 'Modificar' pk=object.pk %}" method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Editar">
+        </form>
+    </body>
+</html>
